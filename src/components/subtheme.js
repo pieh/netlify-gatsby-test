@@ -97,7 +97,7 @@ class SubthemeSection extends React.Component {
 
 
 const SubthemeContainer = styled(SubthemeSection)`
-  background-color: cornflowerblue;
+  background-color: rgba(245,245,245,0.9);
   padding: 20px;
   margin: 50px;
 `
