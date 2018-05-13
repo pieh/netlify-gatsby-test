@@ -5,21 +5,35 @@ import { getCards } from '../components/subtheme'
 const KeyQuote = styled.div`
   font-size: 28px;
   font-weight: normal;
+  margin-bottom: 60px;
 `
 const AuthorBioText = styled.div`
   width: 300px;
   height: auto;
-  position: absolute;
-  top: 150px;
-  left: 30px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  margin-left:-360px;
+  z-index: 9999999999;
+  background-color: white;
+  padding: 30px;
   font-size: 14px;
   line-height: 1.5;
   font-weight:500;
 `
-
+const InterviewTitle = styled.div`
+  margin-bottom: 45px;
+  font-size:48px;
+  line-height:1.25;
+  position: relative;
+  z-index:99999;
+  line-height:1;
+`
 const InterviewMain = styled.div`
   padding: 30px;
-  margin-top: 200px;
+  position:absolute;
+  left:72.5%;
+  margin-left:-290px
 `
 
 const Overlay = styled.div`
@@ -43,19 +57,19 @@ const Centered = styled.div`
 `
 const AuthorImage = styled.div`
   position: fixed;
-  background-color: grey;
   top:0;
   left:0;
   bottom:0;
   right:55%;
+  background-size: cover;
+  background-position: center;
+  background-image: ${props => props.background ?  `url(${props.background})` : `none`};
   overflow:hidden;
-  background-image: url('{{data.nodeInterview.relationships.field_interviewee &&
-                          data.nodeInterview.relationships.field_interviewee.localFile.publicURL}}');
 `
   
 
 const AuthorBio = ({ data }) => (
-  <div style={{marginTop: 20, fontFamily: 'Lato'}}>{data.nodeInterview.field_interviewee_bio.processed}</div>
+  <div style={{fontFamily: 'Lato'}}>{data.nodeInterview.field_interviewee_bio.processed}</div>
 )
 
 class QuickFactOverlay extends React.Component {
@@ -122,23 +136,21 @@ class SingleInterview extends React.Component {
         <AuthorBioText>
           <AuthorBio data={data}> </AuthorBio>
         </AuthorBioText>
-          <div className="column _25" />
-          <InterviewMain className="column _60">
-            <AuthorImage />
-           
-            <div
-              dangerouslySetInnerHTML={{
-                __html: data.nodeInterview.field_full_length_version.processed,
-              }}
-            />
-          </InterviewMain>
-          <div className="column">
+         
+          <InterviewMain style={{maxWidth:580}} className="column">
           <KeyQuote style={{lineHeight:1.5, fontStyle:'italic'}}
               dangerouslySetInnerHTML={{
                 __html: data.nodeInterview.field_key_quote.processed,
               }}
             />
-              <strong>{data.nodeInterview.title}</strong>
+
+              <InterviewTitle><h4 style={{marginBottom:15}}>Interview with</h4>{data.nodeInterview.title}</InterviewTitle>
+               <AuthorImage background={data.nodeInterview.relationships.field_interviewee && data.nodeInterview.relationships.field_interviewee.localFile.publicURL} />
+            <div
+              dangerouslySetInnerHTML={{
+                __html: data.nodeInterview.field_full_length_version.processed,
+              }}
+            />
               <div style={{height: 200}}/>
               {
                 (data.nodeInterview.relationships.backref_field_related_content || []).map(quickFact => (
@@ -154,7 +166,7 @@ class SingleInterview extends React.Component {
                   )
                 )
               }
-          </div>
+          </InterviewMain>
           <div className="column _25" />
       </div>
     )
