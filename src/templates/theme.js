@@ -81,7 +81,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 const ThemeIntro = styled.div`
   position: absolute;
-  bottom: 15px;
+  bottom: 2vh;
   left: 50%;
   margin-left: -400px;
   z-index:99999999999999999999;

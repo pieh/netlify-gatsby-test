@@ -9,6 +9,7 @@
     max-width: 90%;
     margin-bottom: 60px;
     display: flex;
+    margin-bottom: 120px;
 }
 
 .articleCard:nth-child(even) {
@@ -16,11 +17,7 @@
   }
 
 .articleCardImage {
-    height: 480px;
-    border: thin solid lightgrey;
     background-color: darkgrey;
-    border-radius: 16px;
-    margin: 0.5em;
     flex: 480px 0 0;  
     overflow: hidden;  
     background-position: center center;

@@ -30,7 +30,11 @@ import kebabCase from 'lodash/kebabCase'
 // }
 
 const ArticleTitle = styled.div`
-  text-transform: uppercase;
+  font-family: 'Lato';
+  font-size:36px;
+  line-height:1.25;
+  letter-spacing: 0.01em;
+  margin-bottom: 15px;
 `
 const ArticleImage = styled.div`
   background-image: ${props =>
@@ -49,19 +53,22 @@ const ArticleSummary = ({ data }) => {
         className={"articleCardImage"}>
           {data.relationships.field_theme_image && data.relationships.field_theme_image.localFile.publicURL}
         </ArticleImage>
-        <div className="articleExcerpt">
-          {data.field_medium_version && (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: data.field_medium_version.processed,
-              }}
-            />
-
-          )}
+        
+        <div style={{ margin: 60}}>
           <ArticleTitle>
-          <Link to={`/articles/${kebabCase(data.title)}`}>{data.title}</Link>
-           </ArticleTitle>
-          <h1>{data.field_author && data.field_author.processed}</h1>
+            <Link style={{  color: 'rgb(191, 191, 191)', textDecoration: 'none'}} to={`/articles/${kebabCase(data.title)}`}>{data.title}</Link>
+          </ArticleTitle>
+          <h6>{data.field_author && data.field_author.processed}</h6>
+            <div className="card-large-text">
+              {data.field_medium_version && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.field_medium_version.processed,
+                  }}
+                />
+
+              )}
+            </div>
           </div>
         {/* {data.relationships.field_belongs_to_subtheme ? (
         <ul>

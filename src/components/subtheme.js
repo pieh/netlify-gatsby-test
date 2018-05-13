@@ -120,8 +120,8 @@ export const ArticleCard = ({ article, i, relatedContent }) => (
     {article.field_short_version && (
       <div>
         <p className={'card-large-text'} dangerouslySetInnerHTML={{ __html: article.field_short_version.processed }} />
-         { article.field_author && <h6 style={{textAlign:'right', marginBottom:15}} dangerouslySetInnerHTML={{ __html: article.field_author.processed}}/>}
-        <h6 style={{textAlign:'right', fontStyle:'italic', fontWeight:'normal'}}>{article.title}</h6>
+         { article.field_author && <h6 style={{textAlign:'right', marginBottom:7.5, fontSize:18}} dangerouslySetInnerHTML={{ __html: article.field_author.processed}}/>}
+        <h6 style={{textAlign:'right', fontStyle:'italic', fontWeight:'normal', letterSpacing:'0.03em', fontSize:18, fontStyle:'italic'}}>{article.title}</h6>
        
       </div>
     )}
@@ -158,7 +158,7 @@ export const FAQCard = ({ faq = {}, i, relatedContent }) => (
 export const InterviewCard = ({ interview = {}, i, relatedContent }) => (
   <Card style={{padding:30}} key={`interview-${i}`} type="Interview" title={interview.title} slug="interview" changed={interview.changed} link={`/interviews/${kebabCase(interview.title)}`}>
     <p className={'card-large-text'}>{interview.field_key_quote.processed}</p>
-    <h6>{interview.title}</h6>
+    <h6 style={{fontSize:18, textAlign:'right'}}>{interview.title}</h6>
   </Card>
 )
 
