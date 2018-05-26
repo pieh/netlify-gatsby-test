@@ -21,7 +21,7 @@ class Card extends React.Component {
       return (
         <CardWrapper link={this.props.link} className={this.props.className} style={this.props.style}>
             {this.props.type ?
-            <h4 style={{marginBottom:15, opacity:1}}>{this.props.type}</h4> :
+            <h4 style={{marginBottom:15, fontSize:12, opacity:1}}>{this.props.type}</h4> :
             null }
 
             {this.props.children}
@@ -47,15 +47,16 @@ const StyledCard = styled(Card)`
   box-shadow: 0px 2px 15px 0px rgba(179,179,179,0.38);
   transition: all .3s;
   &:hover {
-    -webkit-box-shadow: 0px 7px 15px 2px rgba(179,179,179,0.48);
-    -moz-box-shadow: 0px 7px 15px 2px rgba(179,179,179,0.48);
-    box-shadow: 0px 7px 15px 2px rgba(179,179,179,0.48);
+    -webkit-box-shadow: 0px 7px 15px 2px rgba(179,179,179,0.908);
+    -moz-box-shadow: 0px 7px 15px 2px rgba(179,179,179,0.908);
+    box-shadow: 0px 7px 15px 2px rgba(179,179,179,0.908);
     transition: all .3s;
   }
   margin-bottom: 30px;
   font-family: "ff-tisa-web-pro";
   vertical-align: top;
-  margin-right: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
   max-width: ${BASE_CARD_WIDTH * MAX_WIDTH_CONSTANT}px
 
   ${props => props.background && css`

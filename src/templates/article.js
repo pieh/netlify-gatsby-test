@@ -27,51 +27,65 @@ const HeaderDimmer = styled.div`
   right:0;
   top:0;
   z-index: 99999999;
-  height:50vh;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,d3dde5+100&0.5+1,0+100 */
-  background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(2,2,2,0.5) 1%, rgba(211,221,229,0) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(2,2,2,0.5) 1%,rgba(211,221,229,0) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(2,2,2,0.5) 1%,rgba(211,221,229,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', endColorstr='#00d3dde5',GradientType=0 ); /* IE6-9 */
+  height:210px;
+  mix-blend-mode: multiply;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+16,fcfcfc+100&0.93+16,0+100 */
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.93) 16%, rgba(252,252,252,0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.93) 16%,rgba(252,252,252,0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.93) 16%,rgba(252,252,252,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ed000000', endColorstr='#00fcfcfc',GradientType=0 ); /* IE6-9 */
+`
+const Dimmer = styled.div`
+  width: 100%;
+  position: absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:41vh;
+  mix-blend-mode: multiply;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+61&0+0,0.93+69 */
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.82) 61%, rgba(0,0,0,0.93) 69%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.82) 61%,rgba(0,0,0,0.93) 69%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.82) 61%,rgba(0,0,0,0.93) 69%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#ed000000',GradientType=0 ); /* IE6-9 */
 `
 const ArticleHeader = styled.div`
   width: 100%;
-  height: 66vh;
+  height: 100vh;
   background-image: ${props =>
     props.background ? `url(${props.background})` : `none`};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-color: lightgrey;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: -999;
-  opacity: 0.4;
 `
 
 const ArticleMain = styled.div`
   background-color: rgba(255, 255, 255, 1);
   padding: 30px;
-  margin-top: 10vh;
+  margin-top: 45vh;
   position: relative;
   z-index:99999999;
 `
 const ArticleTitle = styled.div`
-    font-size: 24px;
-    font-family: 'Lato';
+    font-size: 60px;
+    width: 60%;
     margin-bottom: 15px;
     line-height: 1.25;
-    text-align: right;
-    font-weight:700;
-`
-const AuthorTitle = styled.div`
+    color: white;
+    z-index: 99999999999999;
+    position: relative;
+    margin-top: 43vh;
+    left: 120px;
     font-family: 'Lato';
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin-bottom: 90px;
+    font-weight: 200;
 `
+
 
 class QuickFactOverlay extends React.Component {
   render() {
@@ -241,22 +255,57 @@ class SingleArticle extends React.Component {
             data.nodeArticle.relationships.field_main_image &&
             data.nodeArticle.relationships.field_main_image.localFile.publicURL
           }
-        />
-          <div className="column _25">
-          </div>
-          <div style={{
-            textAlign: 'right'
-          }} className="column">
-          <div style={{
-            width:255,
-            height:255,
+        >
+        <ArticleTitle>{data.nodeArticle.title}</ArticleTitle>
+        <h4 style={{marginBottom: 45, color:'white'}}>By {data.nodeArticle.field_author && data.nodeArticle.field_author.processed}</h4>
+        <Dimmer />
+        </ArticleHeader>
+          <ArticleMain style={{
+            marginLeft: 90
+          }} className="column _60">
+            <LargeCalloutText
+              style={{
+                fontSize: 24,
+                fontWeight: 'normal',
+                lineHeight: 1.5
+              }}
+              dangerouslySetInnerHTML={{
+                __html: data.nodeArticle.field_large_callout_text.processed,
+              }}
+            />
+            <div
+              style={{lineHeight:1.7}}
+              dangerouslySetInnerHTML={{
+                __html: data.nodeArticle.field_full_version.processed,
+              }}
+            />
+            <hr style={{width:60, marginTop:60, marginBottom:15}} />
+            <p style={{
+              color: 'lightgrey',
+              letterSpacing: '0.04em',
+              fontStyle: 'italic',
+              fontFamily: 'Lato',
+
+            }}>NOTE: <span dangerouslySetInnerHTML={{
+                __html: data.nodeArticle.field_old_article_discl && data.nodeArticle.field_old_article_discl.processed,
+              }}
+              /></p>
+
+          </ArticleMain>
+         
+        
+          <div className="column">
+         
+            
+            <div style={{
+            width:180,
+            height:180,
             backgroundColor:'red',
-            marginTop:'24vh',
             marginBottom:15,
             overflow:'hidden',
             display:'inline-block',
-            borderRadius:'50%'
-
+            borderRadius:'50%',
+            marginTop:400
           }}>
             <img style={{
               width:300,
@@ -267,9 +316,6 @@ class SingleArticle extends React.Component {
                data.nodeArticle.relationships.field_author_image.localFile.publicURL
             } />
           </div>
-            <ArticleTitle>{data.nodeArticle.title}</ArticleTitle>
-            <h4 style={{marginBottom:90}}>By {data.nodeArticle.field_author && data.nodeArticle.field_author.processed}</h4>
-           
             {
               (data.nodeArticle.relationships.field_tags || []).map(tag =>
                 <Link
@@ -331,39 +377,6 @@ class SingleArticle extends React.Component {
               )
             }
           </div>
-
-          <ArticleMain className="column _60">
-            <LargeCalloutText
-              style={{
-                fontSize: 24,
-                fontWeight: 'normal',
-                lineHeight: 1.5
-              }}
-              dangerouslySetInnerHTML={{
-                __html: data.nodeArticle.field_large_callout_text.processed,
-              }}
-            />
-            <div
-              style={{lineHeight:1.7}}
-              dangerouslySetInnerHTML={{
-                __html: data.nodeArticle.field_full_version.processed,
-              }}
-            />
-            <hr style={{width:60, marginTop:60, marginBottom:15}} />
-            <p style={{
-              color: 'lightgrey',
-              letterSpacing: '0.04em',
-              fontStyle: 'italic',
-              fontFamily: 'Lato',
-
-            }}>NOTE: <span dangerouslySetInnerHTML={{
-                __html: data.nodeArticle.field_old_article_discl && data.nodeArticle.field_old_article_discl.processed,
-              }}
-              /></p>
-
-          </ArticleMain>
-          <div className="column _25" />
-
       </div>
     )
   }

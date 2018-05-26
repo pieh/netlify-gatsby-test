@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 import kebabCase from 'lodash/kebabCase'
 import styled from 'styled-components'
-
+import {ClipPoster} from '../components/allClips.js'
 
 // const ContentNodeComponent = ({ data }) => (
 //   <li>
@@ -44,10 +44,17 @@ const HomeThemeImage = styled.div`
   text-align: center;
   letter-spacing: 0.04em;
   background-position: center center;
-  background-size: cover;
+  background-size: 120%;
+  transition: all .5s;
+  &:hover {
+    background-size:250%;
+    transition: all 4.5s;
+  }
   background-image: ${props =>
                       props.background ? `url(${props.background})` : `none`};
 `
+
+
 
 const ThemeComponent = ({ data }) => (
   <div style={{
@@ -87,6 +94,7 @@ export default ({ data }) => (
   
   <div className='wrapper'>
   <HomeBackground />
+ 
     {data.allTaxonomyTermThemes.edges.map(({ node }) => (
       <ThemeComponent data={node} />
     ))}

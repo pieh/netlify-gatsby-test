@@ -703,17 +703,23 @@ iframe {
 .totalDimmer {
   height: 100%;
   width: 100%;
-  background-color:rgba(0, 0, 0, 0.3);
+  background-color:rgba(0, 0, 0, 0);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  opacity: 0;
+  transition: all .25s;
+}
+.totalDimmer:hover {
+  background-color:rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  transition: all .25s;
 }
 .filmSubtitle {
   font-size: 20px;
   position: relative;
-  top: 1.25em;
-  left: -8em;
-  font-family: 'Lato';
+  /* top: 1.25em; */
+  left: 1em;
   letter-spacing: 0.075em;
   /* font-style: italic; */
 }

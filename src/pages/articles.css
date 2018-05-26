@@ -19,7 +19,7 @@
 
 .articleCardImage {
     background-color: darkgrey;
-    flex: 480px 0 0;  
+    flex: 390px 0 0;  
     overflow: hidden;  
     background-position: center center;
     background-size: cover;
@@ -35,17 +35,19 @@
     line-height: 1.5;
 }
 .readButton {
-    background-color: rgb(66, 21, 107);
+    background-color: rgba(51, 27, 7, 0.35);
     padding: 6px;
-    border-radius: 30px;
     color: white;
     font-weight: 600;
     font-size: 15px;
     font-family: 'Lato';
     width: 150px;
     text-align: center;
+    letter-spacing: 0.04em;
+    transition: all .25s;
 }
 .readButton:hover {
     cursor: pointer;
-    background-color: rgba(66, 21, 107, 0.85);
+    background-color: rgba(51, 27, 7, 0.45);
+    transition: all .25s;
 }

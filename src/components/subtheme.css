@@ -8,13 +8,14 @@ button {
     background:none;
 }
 .subtheme-description {
-    font-size: 16px;
+    font-size: 24px;
     color: rgba(59, 59, 59, 0.8);
     line-height: 1.5;
-    max-width: 690px;
+    max-width: 75%;
     text-align: center;
     margin: 0 auto;
     font-family: 'Lato';
+    letter-spacing: 0.02em;
     margin-bottom: 45px;
     font-style: italic;
 }
@@ -34,9 +35,9 @@ button {
     overflow: hidden;
 }
 .card-large-text {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 300;
-    line-height: 1.5;
+    line-height: 1.25;
 }
 .RCcard-large-text {
     font-size: 14px;

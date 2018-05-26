@@ -46,7 +46,7 @@ const ThemeHeader = styled.div`
   background-size: cover;
   background-position: center;
   background-color: lightgrey;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -94,7 +94,6 @@ const ThemeMain = styled.div`
   position: absolute;
   top: 100vh;
   width:100%;
-  background-color: #f7f7f7;
 `
 
 class ThemePage extends React.Component {

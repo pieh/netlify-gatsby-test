@@ -11,7 +11,7 @@ const TemplateWrapper = ({ children, location }) => (
   <div>
     <Helmet
       title="Race: The Power of an Illusion"
-
+      
       meta={[
         { name: 'description', content: 'Sample' },
         { name: 'keywords', content: 'sample, something' },
